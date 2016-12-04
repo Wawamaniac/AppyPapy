@@ -1,8 +1,7 @@
 package com.android.appypapy;
 
-import android.Manifest;
 import android.app.Application;
-import com.android.appypapy.lipreader.LipReaderLibrary;
+import android.content.Context;
 
 /**
  * Created by kln on 30/10/2016.
@@ -11,11 +10,20 @@ import com.android.appypapy.lipreader.LipReaderLibrary;
 public class AppyPapyApplication extends Application
 {
 
+    private static Context APPLICATION_CONTEXT;
+
     @Override
     public void onCreate()
     {
 	super.onCreate();
 
+	APPLICATION_CONTEXT = getApplicationContext();
+
 	System.loadLibrary("feature_extractor");
+    }
+
+    public static Context getAppyPapyApplicationContext()
+    {
+	return APPLICATION_CONTEXT;
     }
 }

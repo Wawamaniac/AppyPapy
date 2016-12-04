@@ -10,6 +10,7 @@ public abstract class AppyMessage
 {
 
     public static final int APPY_MESSAGE_SENTENCE = 1;
+    public static final int APPY_MESSAGE_NEW_FAVORITE_SENTENCE = 2;
 
     protected Message message;
 
@@ -24,12 +25,5 @@ public abstract class AppyMessage
     }
 
     protected abstract void bindMessage(Message message);
-
-    public final void post()
-    {
-	bindMessage(this.message);
-
-	AppyMessageBox.getInstance().post(this);
-    }
 
 }

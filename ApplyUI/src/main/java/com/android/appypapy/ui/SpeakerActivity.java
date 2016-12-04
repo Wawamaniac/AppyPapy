@@ -1,22 +1,23 @@
 package com.android.appypapy.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 import com.android.appypapy.R;
+import com.android.appypapy.messaging.AppyMessageBox;
+import com.android.appypapy.messaging.AppySentenceMessage;
+import com.android.appypapy.messaging.listener.AppySentenceMessageListener;
+import com.android.appypapy.ui.adapter.SpeakerPagerAdapter;
 import com.android.appypapy.ui.generic.AppyActivity;
 
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 
-public class SpeakerActivity extends AppyActivity
+public class SpeakerActivity extends AppyActivity implements AppySentenceMessageListener
 {
 
     private static final String TAG = SpeakerActivity.class.getSimpleName();
@@ -24,20 +25,28 @@ public class SpeakerActivity extends AppyActivity
 
     protected TextToSpeech textToSpeech;
 
-    protected EditText input;
-    protected Button button;
+    protected ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 	super.onCreate(savedInstanceState);
-	setContentView(R.layout.activity_speaker);
+	setContentView(R.layout.activiry_speaker);
 
-	this.input = (EditText) findViewById(R.id.input);
-	this.button = (Button) findViewById(R.id.button);
-	this.button.setOnClickListener(this.onButtonClickedListener);
+	this.viewPager = (ViewPager) findViewById(R.id._activity_speaker_pager);
+	this.viewPager.setAdapter(new SpeakerPagerAdapter(getSupportFragmentManager()));
+
+	AppyMessageBox.getInstance().registerListener(SpeakerActivity.this);
 
 	this.textToSpeech = new TextToSpeech(SpeakerActivity.this, this.onInitListener);
+    }
+
+    @Override
+    protected void onStop()
+    {
+	super.onStop();
+
+	AppyMessageBox.getInstance().unregisterListener(SpeakerActivity.this);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -48,12 +57,12 @@ public class SpeakerActivity extends AppyActivity
 	    {
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP)
 		{
-		    Set<Locale> avaiableLanguages = this.textToSpeech.getAvailableLanguages();
-		    Iterator<Locale> avaiableLanguagesIterator = avaiableLanguages.iterator();
+		    Set<Locale> availableLanguages = this.textToSpeech.getAvailableLanguages();
+		    Iterator<Locale> availableLanguagesIterator = availableLanguages.iterator();
 
-		    while (avaiableLanguagesIterator.hasNext())
+		    while (availableLanguagesIterator.hasNext())
 		    {
-			Log.d(TAG, "Avaiable language found : " + avaiableLanguagesIterator.next().toString());
+			Log.d(TAG, "Available language found : " + availableLanguagesIterator.next().toString());
 		    }
 		}
 
@@ -64,7 +73,7 @@ public class SpeakerActivity extends AppyActivity
 		}
 		else
 		{
-		    Toast.makeText(SpeakerActivity.this, "La langue française n'est pas supportée par cet appareil.",
+		    Toast.makeText(SpeakerActivity.this, "French language is not supported by this device",
 			    Toast.LENGTH_LONG).show();
 		}
 	    }
@@ -76,16 +85,6 @@ public class SpeakerActivity extends AppyActivity
 	    }
 	}
     }
-
-    protected final View.OnClickListener onButtonClickedListener = new View.OnClickListener()
-    {
-	@Override
-	public void onClick(View view)
-	{
-	    SpeakerActivity.this.textToSpeech
-		    .speak(SpeakerActivity.this.input.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
-	}
-    };
 
     protected final TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener()
     {
@@ -108,4 +107,11 @@ public class SpeakerActivity extends AppyActivity
 	    }
 	}
     };
+
+    @Override
+    public void handleMessage(AppySentenceMessage message)
+    {
+	// TODO : manage sound volume
+	this.textToSpeech.speak(message.getSentence(), TextToSpeech.QUEUE_FLUSH, null);
+    }
 }

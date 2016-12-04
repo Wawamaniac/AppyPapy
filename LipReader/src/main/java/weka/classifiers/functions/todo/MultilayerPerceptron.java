@@ -18,7 +18,7 @@
  *    Copyright (C) 2000-2012 University of Waikato, Hamilton, New Zealand
  */
 
-package weka.classifiers.functions;
+package weka.classifiers.functions.todo;
 
 import weka.classifiers.AbstractClassifier;
 import weka.classifiers.Classifier;

@@ -3,6 +3,7 @@ package com.android.appypapy.messaging;
 import android.os.Looper;
 import android.os.Message;
 import com.android.appypapy.messaging.listener.AppyMessageBoxListener;
+import com.android.appypapy.messaging.listener.AppyNewFavoriteSentenceListener;
 import com.android.appypapy.messaging.listener.AppySentenceMessageListener;
 
 import java.util.ArrayList;
@@ -43,6 +44,8 @@ public class AppyMessageBox
 
     public void post(AppyMessage message)
     {
+	message.bindMessage(message.message);
+
 	this.mHandler.sendMessage(message.message);
     }
 
@@ -53,6 +56,9 @@ public class AppyMessageBox
 	    case AppySentenceMessage.APPY_MESSAGE_SENTENCE:
 		notifySentenceMessage(new AppySentenceMessage(message));
 		break;
+	    case AppySentenceMessage.APPY_MESSAGE_NEW_FAVORITE_SENTENCE:
+		notifyNewFavoriteMessage(new NewFavoriteSentenceMessage(message));
+		break;
 	}
     }
 
@@ -61,6 +67,17 @@ public class AppyMessageBox
 	for (AppyMessageBoxListener listener : this.listeners)
 	{
 	    if (listener instanceof AppySentenceMessageListener)
+	    {
+		listener.handleMessage(message);
+	    }
+	}
+    }
+
+    protected void notifyNewFavoriteMessage(NewFavoriteSentenceMessage message)
+    {
+	for (AppyMessageBoxListener listener : this.listeners)
+	{
+	    if (listener instanceof AppyNewFavoriteSentenceListener)
 	    {
 		listener.handleMessage(message);
 	    }

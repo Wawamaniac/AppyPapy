@@ -1,11 +1,10 @@
 package com.android.appypapy.lipreader;
 
-import android.content.Context;
 import org.apache.commons.io.IOUtils;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Properties;
 
@@ -17,6 +16,7 @@ public class Constants
 {
 
     public static final Properties LIP_READING_PROPS = new Properties();
+    public static final List<String> VOCABULARY;
 
     static
     {
@@ -33,6 +33,16 @@ public class Constants
 	    throw new RuntimeException(e);
 	}
 
+	try
+	{
+	    VOCABULARY = IOUtils.readLines(Thread.currentThread().getContextClassLoader()
+			    .getResourceAsStream(LIP_READING_PROPS.getProperty("DEFAULT_VOCABULARY_FILE")),
+		    Charset.forName("UTF-8"));
+	}
+	catch (IOException e)
+	{
+	    throw new RuntimeException(e);
+	}
     }
 
     public static final String CLASSIFIER_MODEL_URL = LIP_READING_PROPS.getProperty("CLASSIFIER_MODEL_URL");
@@ -49,21 +59,6 @@ public class Constants
     public static final short LEFT_VECTOR_INDEX = 1;
     public static final short UPPER_VECTOR_INDEX = 2;
     public static final short LOWER_VECTOR_INDEX = 3;
-
-    public static final List<String> VOCABULARY;
-
-    public static void init(Context context)
-    {
-	try
-	{
-	    VOCABULARY = IOUtils.readLines(new FileReader(Constants.class.getClassLoader()
-		    .getResource(LIP_READING_PROPS.getProperty("DEFAULT_VOCABULARY_FILE")).getFile()));
-	}
-	catch (IOException e)
-	{
-	    throw new RuntimeException(e);
-	}
-    }
 
     public static class MouthDetector
     {

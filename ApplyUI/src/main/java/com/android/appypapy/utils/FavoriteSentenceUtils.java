@@ -3,7 +3,6 @@ package com.android.appypapy.utils;
 import com.android.appypapy.model.FavoriteSentence;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,9 +13,11 @@ import java.util.Map;
 public class FavoriteSentenceUtils
 {
 
-    public static Map<String, List<FavoriteSentence>> organizeByFolder(List<FavoriteSentence> favoriteSentences)
+    public static Map<String, List<FavoriteSentence>> organizeByFolder(List<FavoriteSentence> favoriteSentences,
+								       Map<String, List<FavoriteSentence>>
+									       favoriteSentencesByFolder)
     {
-	Map<String, List<FavoriteSentence>> favoriteSentencesByFolder = new HashMap<>(0);
+	favoriteSentencesByFolder.clear();
 
 	int size = favoriteSentences.size();
 	FavoriteSentence favoriteSentence;
@@ -36,5 +37,6 @@ public class FavoriteSentenceUtils
 
 	return favoriteSentencesByFolder;
     }
+
 
 }

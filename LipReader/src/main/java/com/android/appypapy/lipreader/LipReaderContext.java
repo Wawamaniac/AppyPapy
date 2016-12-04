@@ -27,7 +27,7 @@ public class LipReaderContext
 	try
 	{
 	    InputStream modelFileInputStream = context.getResources().openRawResource(R.raw.yesnohello);
-	    classifier = new MultiLayerPerceptronClassifier(modelFileInputStream);
+	    //classifier = new MultiLayerPerceptronClassifier(modelFileInputStream);
 	    modelFileInputStream.close();
 	}
 	catch (Exception e)

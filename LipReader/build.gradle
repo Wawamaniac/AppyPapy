@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 24
     buildToolsVersion "23.0.3"
 
     buildTypes {
@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 24
         versionCode 100
         versionName "1.0.0"
     }
@@ -29,11 +29,6 @@ android {
 
     task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
         def ndkDir = plugins.getPlugin('com.android.library').sdkHandler.getNdkFolder()
-
-        FileTree tree = fileTree (dir: "src/main/jniLibs");
-        tree.each { File file ->
-            delete(file)
-        }
 
         commandLine "$ndkDir/ndk-build.cmd",
                 'clean',
@@ -58,10 +53,7 @@ dependencies {
     repositories {
         mavenCentral()
     }
-
     compile fileTree(include: ['*.jar'], dir: 'src/main/libs')
-
-    compile 'nz.ac.waikato.cms.weka:weka-dev:3.9.0'
 
     compile 'commons-io:commons-io:2.5'
     compile 'org.apache.commons:commons-lang3:3.5'

@@ -11,8 +11,8 @@ import com.j256.ormlite.table.DatabaseTable;
 public class FavoriteSentence
 {
 
-    @DatabaseField(columnName = "id", generatedId = true, id = true)
-    protected int id;
+    @DatabaseField(columnName = "sentenceId", generatedId = true)
+    protected int sentenceId;
 
     @DatabaseField(columnName = "folder", dataType = DataType.STRING)
     protected String folder;
@@ -22,33 +22,33 @@ public class FavoriteSentence
 
     public FavoriteSentence()
     {
-	this.id = -1;
+	this.sentenceId = -1;
 	this.folder = null;
 	this.sentence = "";
     }
 
     public FavoriteSentence(String folder, String sentence)
     {
-	this.id = -1;
+	this.sentenceId = -1;
 	this.folder = folder;
 	this.sentence = sentence;
     }
 
     public FavoriteSentence(int id, String folder, String sentence)
     {
-	this.id = id;
+	this.sentenceId = id;
 	this.folder = folder;
 	this.sentence = sentence;
     }
 
-    public int getId()
+    public int getSentenceId()
     {
-	return id;
+	return sentenceId;
     }
 
-    public void setId(int id)
+    public void setSentenceId(int sentenceId)
     {
-	this.id = id;
+	this.sentenceId = sentenceId;
     }
 
     public String getFolder()

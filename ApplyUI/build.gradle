@@ -1,15 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 24
     buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "com.android.appypapy"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 24
         versionCode 1000
         versionName "1.0.0"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -23,4 +24,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':LipReader')
+
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.google.android:support-v4:r7'
+
+    compile 'com.j256.ormlite:ormlite-android:5.0'
 }

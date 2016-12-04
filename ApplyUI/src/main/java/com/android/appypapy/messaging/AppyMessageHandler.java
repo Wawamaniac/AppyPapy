@@ -31,6 +31,9 @@ public class AppyMessageHandler extends Handler
 	    case AppySentenceMessage.APPY_MESSAGE_SENTENCE:
 		sendMessageToBox(message);
 		break;
+	    case AppySentenceMessage.APPY_MESSAGE_NEW_FAVORITE_SENTENCE:
+		sendMessageToBox(message);
+		break;
 	    default:
 		super.handleMessage(message);
 		break;

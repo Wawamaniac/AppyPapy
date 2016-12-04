@@ -17,9 +17,6 @@ import com.android.appypapy.utils.AppyLog;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.OpenCVLoader;
 
-/**
- * Created by kln on 29/10/2016.
- */
 
 public class VideoActivity extends AppyActivity
 {

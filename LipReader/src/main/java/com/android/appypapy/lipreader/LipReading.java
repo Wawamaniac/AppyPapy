@@ -52,11 +52,11 @@ public class LipReading
 	    }
 	}
 
-	Classifier classifier = new MultiLayerPerceptronClassifier(new FileInputStream(modelFile));
-	LipVideoSample sample = fe.extract(testFile);
-	sample = normalize(sample);
-
-	System.out.println("got the word: " + classifier.test(sample));
+//	Classifier classifier = new MultiLayerPerceptronClassifier(new FileInputStream(modelFile));
+//	LipVideoSample sample = fe.extract(testFile);
+//	sample = normalize(sample);
+//
+//	System.out.println("got the word: " + classifier.test(sample));
     }
 
     private static void dataset(AbstractFeatureExtractor fe, String folderPath) throws Exception

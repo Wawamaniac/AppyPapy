@@ -31,17 +31,16 @@ public class AppyPapyDao<Model, ID> extends BaseDaoImpl<Model, ID>
 	super(connectionSource, tableConfig);
     }
 
-    public static AppyPapyDao createDao(ConnectionSource connectionSource, Object model)
+    public static AppyPapyDao createDao(ConnectionSource connectionSource, Class modelClass)
     {
 	try
 	{
-	    return new AppyPapyDao(connectionSource, model.getClass());
+	    return new AppyPapyDao(connectionSource, modelClass);
 	}
 	catch (SQLException e)
 	{
 	    AppyLog.error(TAG, "createDao",
-		    "Error while instantiating DAO of model " + model.getClass().getSimpleName() + " : " + e
-			    .getMessage());
+		    "Error while instantiating DAO of model " + modelClass.getSimpleName() + " : " + e.getMessage());
 	}
 
 	return null;

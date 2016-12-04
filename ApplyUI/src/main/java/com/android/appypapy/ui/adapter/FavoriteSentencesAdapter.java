@@ -8,7 +8,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import com.android.appypapy.R;
 import com.android.appypapy.model.FavoriteSentence;
+import com.android.appypapy.persistence.PersistenceManager;
+import com.android.appypapy.ui.event.SpeakEventClickListener;
+import com.android.appypapy.utils.FavoriteSentenceUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,12 +27,15 @@ public class FavoriteSentencesAdapter extends BaseExpandableListAdapter
 
     protected Context context;
     protected List<String> dataHeader;
+    protected List<FavoriteSentence> favoriteSentences;
     protected Map<String, List<FavoriteSentence>> data;
 
-    public FavoriteSentencesAdapter(Context context, List<String> dataHeader, Map<String, List<FavoriteSentence>> data)
+    public FavoriteSentencesAdapter(Context context, List<String> dataHeader, List<FavoriteSentence> favoriteSentences,
+				    Map<String, List<FavoriteSentence>> data)
     {
 	this.context = context;
 	this.dataHeader = dataHeader;
+	this.favoriteSentences = favoriteSentences;
 	this.data = data;
 
 	this.layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -67,7 +74,7 @@ public class FavoriteSentencesAdapter extends BaseExpandableListAdapter
     @Override
     public long getChildId(int groupPosition, int childPosition)
     {
-	return this.data.get(this.dataHeader.get(groupPosition)).get(childPosition).getId();
+	return this.data.get(this.dataHeader.get(groupPosition)).get(childPosition).getSentenceId();
     }
 
     @Override
@@ -96,15 +103,32 @@ public class FavoriteSentencesAdapter extends BaseExpandableListAdapter
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
 			     ViewGroup parent)
     {
-	String sentence = (String) getChild(groupPosition, childPosition);
+	final FavoriteSentence favoriteSentence = (FavoriteSentence) getChild(groupPosition, childPosition);
 
 	if (convertView == null)
 	{
 	    convertView = this.layoutInflater.inflate(R.layout.item_favorite_sentence, parent, false);
 	}
 
-	TextView lblListHeader = (TextView) convertView.findViewById(R.id.sentence);
-	lblListHeader.setText(sentence);
+	TextView sentence = (TextView) convertView.findViewById(R.id.sentence);
+	sentence.setText(favoriteSentence.getSentence());
+
+	View speak = convertView.findViewById(R.id.speak);
+	speak.setOnClickListener(new SpeakEventClickListener(favoriteSentence.getSentence()));
+
+	View delete = convertView.findViewById(R.id.delete);
+	delete.setOnClickListener(new View.OnClickListener()
+	{
+	    @Override
+	    public void onClick(View v)
+	    {
+		PersistenceManager.getManager().delete(favoriteSentence);
+
+		favoriteSentences.remove(favoriteSentence);
+		FavoriteSentenceUtils.organizeByFolder(favoriteSentences, data);
+		notifyDataSetChanged();
+	    }
+	});
 
 	return convertView;
     }
@@ -113,5 +137,12 @@ public class FavoriteSentencesAdapter extends BaseExpandableListAdapter
     public boolean isChildSelectable(int groupPosition, int childPosition)
     {
 	return true;
+    }
+
+    @Override
+    public void notifyDataSetChanged()
+    {
+	this.dataHeader = new ArrayList<>(this.data.keySet());
+	super.notifyDataSetChanged();
     }
 }

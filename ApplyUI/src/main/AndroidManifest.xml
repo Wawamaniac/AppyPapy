@@ -22,13 +22,13 @@
 			android:theme="@style/AppTheme">
 
 		<activity android:name="com.android.appypapy.ui.SpeakerActivity">
-		</activity>
-
-		<activity android:name="com.android.appypapy.ui.VideoActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
+		</activity>
+
+		<activity android:name="com.android.appypapy.ui.VideoActivity">
 		</activity>
 	</application>
 

@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import com.android.appypapy.R;
 import com.android.appypapy.messaging.AppyMessageBox;
-import com.android.appypapy.messaging.AppySentenceMessage;
+import com.android.appypapy.messaging.NewFavoriteSentenceMessage;
 import com.android.appypapy.model.FavoriteSentence;
+import com.android.appypapy.persistence.PersistenceManager;
+import com.android.appypapy.ui.event.InputSpeakEventListener;
 
 /**
  * Created by kln on 27/11/2016.
@@ -34,25 +36,12 @@ public class FreeSpeakFragment extends Fragment
 	this.clear = (Button) layout.findViewById(R.id.clear);
 	this.favorite = (Button) layout.findViewById(R.id.favorite);
 
-	this.button.setOnClickListener(this.onButtonClickedListener);
+	this.button.setOnClickListener(new InputSpeakEventListener(this.input));
 	this.clear.setOnClickListener(this.onClearClickedListener);
 	this.favorite.setOnClickListener(this.onFavoriteClickedListener);
 
 	return layout;
     }
-
-    protected final View.OnClickListener onButtonClickedListener = new View.OnClickListener()
-    {
-	@Override
-	public void onClick(View view)
-	{
-
-	    AppySentenceMessage message = new AppySentenceMessage(FreeSpeakFragment.this.input.getText().toString(),
-		    AppySentenceMessage.SentenceReadTypes.NORMAL);
-
-	    AppyMessageBox.getInstance().post(message);
-	}
-    };
 
     protected final View.OnClickListener onClearClickedListener = new View.OnClickListener()
     {
@@ -70,7 +59,12 @@ public class FreeSpeakFragment extends Fragment
 	{
 	    String sentence = FreeSpeakFragment.this.input.getText().toString();
 
-	    FavoriteSentence favoriteSentence = new FavoriteSentence(null, sentence);
+	    FavoriteSentence favoriteSentence = new FavoriteSentence("Favoris", sentence);
+	    PersistenceManager.getManager().upsert(favoriteSentence);
+
+	    NewFavoriteSentenceMessage message = new NewFavoriteSentenceMessage(favoriteSentence);
+
+	    AppyMessageBox.getInstance().post(message);
 	}
     };
 }

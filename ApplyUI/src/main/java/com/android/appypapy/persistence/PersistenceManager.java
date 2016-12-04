@@ -30,10 +30,10 @@ public class PersistenceManager
 	return SINGLETON;
     }
 
-    public <T> List<T> getAll(Class model)
+    public <T> List<T> getAll(Class modelClass)
     {
-	ConnectionSource connectionSource = initDatabaseConnection(model.getClass());
-	Dao<T, Integer> modelDao = AppyPapyDao.createDao(connectionSource, model.getClass());
+	ConnectionSource connectionSource = initDatabaseConnection(modelClass);
+	Dao<T, Integer> modelDao = AppyPapyDao.createDao(connectionSource, modelClass);
 
 	if (modelDao != null)
 	{
@@ -49,7 +49,7 @@ public class PersistenceManager
 	}
 	else
 	{
-	    String error = "Model DAO of class " + model.getClass().getSimpleName() +
+	    String error = "Model DAO of class " + modelClass.getSimpleName() +
 		    " is null, cannot get model.";
 
 	    AppyLog.exception(TAG, "getById", error, new NullPointerException(error));
@@ -58,10 +58,10 @@ public class PersistenceManager
 	}
     }
 
-    public <T> T getById(Class model, int id)
+    public <T> T getById(Class modelClass, int id)
     {
-	ConnectionSource connectionSource = initDatabaseConnection(model.getClass());
-	Dao<T, Integer> modelDao = AppyPapyDao.createDao(connectionSource, model.getClass());
+	ConnectionSource connectionSource = initDatabaseConnection(modelClass);
+	Dao<T, Integer> modelDao = AppyPapyDao.createDao(connectionSource, modelClass);
 
 	if (modelDao != null)
 	{
@@ -77,7 +77,7 @@ public class PersistenceManager
 	}
 	else
 	{
-	    String error = "Model DAO of class " + model.getClass().getSimpleName() +
+	    String error = "Model DAO of class " + modelClass.getSimpleName() +
 		    " is null, cannot get model.";
 
 	    AppyLog.exception(TAG, "getById", error, new NullPointerException(error));
