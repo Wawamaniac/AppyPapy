@@ -8,8 +8,9 @@ import android.util.Log;
 import android.widget.Toast;
 import com.android.appypapy.R;
 import com.android.appypapy.messaging.AppyMessageBox;
+import com.android.appypapy.messaging.AppyMessageBoxListener;
 import com.android.appypapy.messaging.AppySentenceMessage;
-import com.android.appypapy.messaging.listener.AppySentenceMessageListener;
+import com.android.appypapy.messaging.NewFavoriteSentenceMessage;
 import com.android.appypapy.ui.adapter.SpeakerPagerAdapter;
 import com.android.appypapy.ui.generic.AppyActivity;
 
@@ -17,7 +18,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 
-public class SpeakerActivity extends AppyActivity implements AppySentenceMessageListener
+public class SpeakerActivity extends AppyActivity implements AppyMessageBoxListener
 {
 
     private static final String TAG = SpeakerActivity.class.getSimpleName();
@@ -109,9 +110,17 @@ public class SpeakerActivity extends AppyActivity implements AppySentenceMessage
     };
 
     @Override
-    public void handleMessage(AppySentenceMessage message)
+    public boolean handleMessage(AppySentenceMessage message)
     {
 	// TODO : manage sound volume
 	this.textToSpeech.speak(message.getSentence(), TextToSpeech.QUEUE_FLUSH, null);
+	return true;
+    }
+
+    @Override
+    public boolean handleMessage(NewFavoriteSentenceMessage message)
+    {
+	this.viewPager.setCurrentItem(1);
+	return true;
     }
 }

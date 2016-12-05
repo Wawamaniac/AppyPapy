@@ -2,9 +2,6 @@ package com.android.appypapy.messaging;
 
 import android.os.Looper;
 import android.os.Message;
-import com.android.appypapy.messaging.listener.AppyMessageBoxListener;
-import com.android.appypapy.messaging.listener.AppyNewFavoriteSentenceListener;
-import com.android.appypapy.messaging.listener.AppySentenceMessageListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,10 +63,7 @@ public class AppyMessageBox
     {
 	for (AppyMessageBoxListener listener : this.listeners)
 	{
-	    if (listener instanceof AppySentenceMessageListener)
-	    {
-		listener.handleMessage(message);
-	    }
+	    listener.handleMessage(message);
 	}
     }
 
@@ -77,10 +71,7 @@ public class AppyMessageBox
     {
 	for (AppyMessageBoxListener listener : this.listeners)
 	{
-	    if (listener instanceof AppyNewFavoriteSentenceListener)
-	    {
-		listener.handleMessage(message);
-	    }
+	    listener.handleMessage(message);
 	}
     }
 

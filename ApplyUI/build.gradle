@@ -23,10 +23,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':LipReader')
-
+    compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.google.android:support-v4:r7'
-
+    compile project(':LipReader')
     compile 'com.j256.ormlite:ormlite-android:5.0'
 }

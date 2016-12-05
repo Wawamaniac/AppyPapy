@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import com.android.appypapy.R;
 import com.android.appypapy.messaging.AppyMessageBox;
+import com.android.appypapy.messaging.AppyMessageBoxListener;
+import com.android.appypapy.messaging.AppySentenceMessage;
 import com.android.appypapy.messaging.NewFavoriteSentenceMessage;
-import com.android.appypapy.messaging.listener.AppyNewFavoriteSentenceListener;
 import com.android.appypapy.model.FavoriteSentence;
 import com.android.appypapy.persistence.PersistenceManager;
 import com.android.appypapy.ui.adapter.FavoriteSentencesAdapter;
@@ -26,7 +26,7 @@ import java.util.Map;
  * Created by kln on 27/11/2016.
  */
 
-public class FavoriteSentencesFragment extends Fragment implements AppyNewFavoriteSentenceListener
+public class FavoriteSentencesFragment extends Fragment implements AppyMessageBoxListener
 {
 
     protected List<FavoriteSentence> favoriteSentences;
@@ -63,7 +63,13 @@ public class FavoriteSentencesFragment extends Fragment implements AppyNewFavori
     }
 
     @Override
-    public void handleMessage(NewFavoriteSentenceMessage message)
+    public boolean handleMessage(AppySentenceMessage message)
+    {
+	return false;
+    }
+
+    @Override
+    public boolean handleMessage(NewFavoriteSentenceMessage message)
     {
 	FavoriteSentence favoriteSentence = message.getFavoriteSentence();
 	String folder = favoriteSentence.getFolder();
@@ -78,5 +84,7 @@ public class FavoriteSentencesFragment extends Fragment implements AppyNewFavori
 	this.favoriteSentencesByFolder.get(folder).add(favoriteSentence);
 
 	this.favoriteSentencesAdapter.notifyDataSetChanged();
+
+	return true;
     }
 }
