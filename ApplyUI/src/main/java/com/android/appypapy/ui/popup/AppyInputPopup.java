@@ -44,7 +44,7 @@ public class AppyInputPopup extends AppyPopup
     protected void bindDialog(final Context context, final AlertDialog alertDialog, LayoutInflater inflater,
 			      LinearLayout popupBaseLayout, TextView title, TextView message, Button button1)
     {
-	final EditText input = (EditText) popupBaseLayout.findViewById(R.id.yoozpopup_input);
+	final EditText input = (EditText) popupBaseLayout.findViewById(R.id.popup_input);
 	input.setVisibility(View.VISIBLE);
 	input.setHint(this.hint);
 

@@ -10,7 +10,7 @@ import com.android.appypapy.R;
 import com.android.appypapy.messaging.AppyMessageBox;
 import com.android.appypapy.messaging.AppyMessageBoxListener;
 import com.android.appypapy.messaging.AppySentenceMessage;
-import com.android.appypapy.messaging.NewFavoriteSentenceMessage;
+import com.android.appypapy.messaging.FavoriteSentenceMessage;
 import com.android.appypapy.ui.adapter.SpeakerPagerAdapter;
 import com.android.appypapy.ui.generic.AppyActivity;
 
@@ -118,7 +118,7 @@ public class SpeakerActivity extends AppyActivity implements AppyMessageBoxListe
     }
 
     @Override
-    public boolean handleMessage(NewFavoriteSentenceMessage message)
+    public boolean handleMessage(FavoriteSentenceMessage message)
     {
 	this.viewPager.setCurrentItem(1);
 	return true;

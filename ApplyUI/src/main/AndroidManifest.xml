@@ -21,14 +21,16 @@
 			android:supportsRtl="true"
 			android:theme="@style/AppTheme">
 
-		<activity android:name="com.android.appypapy.ui.SpeakerActivity">
+		<activity android:name="com.android.appypapy.ui.SpeakerActivity"
+				  android:screenOrientation="sensorPortrait">
+		</activity>
+
+		<activity android:name="com.android.appypapy.ui.VideoActivity"
+				  android:screenOrientation="sensorPortrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
-		</activity>
-
-		<activity android:name="com.android.appypapy.ui.VideoActivity">
 		</activity>
 	</application>
 

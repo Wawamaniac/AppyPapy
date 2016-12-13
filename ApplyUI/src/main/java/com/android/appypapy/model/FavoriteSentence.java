@@ -70,4 +70,17 @@ public class FavoriteSentence
     {
 	this.sentence = sentence;
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+	if (obj instanceof FavoriteSentence)
+	{
+	    return this.sentenceId == ((FavoriteSentence) obj).sentenceId;
+	}
+	else
+	{
+	    return super.equals(obj);
+	}
+    }
 }

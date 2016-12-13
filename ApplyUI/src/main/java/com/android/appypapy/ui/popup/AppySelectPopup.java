@@ -47,7 +47,7 @@ public class AppySelectPopup extends AppyPopup
     protected void bindDialog(final Context context, final AlertDialog alertDialog, LayoutInflater inflater,
 			      LinearLayout popupBaseLayout, TextView title, TextView message, Button button1)
     {
-	LinearLayout container = (LinearLayout) popupBaseLayout.findViewById(R.id.yoozpopup_container);
+	LinearLayout container = (LinearLayout) popupBaseLayout.findViewById(R.id.popup_container);
 	container.removeAllViews();
 
 	final RadioGroup radioGroup = new RadioGroup(context);

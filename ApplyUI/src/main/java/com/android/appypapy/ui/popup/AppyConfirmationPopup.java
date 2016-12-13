@@ -41,7 +41,7 @@ public class AppyConfirmationPopup extends AppyPopup
     {
 	final OnPopupHandledListener listener = (OnPopupHandledListener) this.onPopupHandledListener;
 
-	Button button2 = (Button) popupBaseLayout.findViewById(R.id.yoozpopup_button2);
+	Button button2 = (Button) popupBaseLayout.findViewById(R.id.popup_button2);
 	button2.setVisibility(View.VISIBLE);
 	button2.setText(this.button2Text);
 

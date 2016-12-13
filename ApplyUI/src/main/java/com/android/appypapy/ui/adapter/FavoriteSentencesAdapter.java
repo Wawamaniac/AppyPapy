@@ -8,9 +8,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import com.android.appypapy.R;
 import com.android.appypapy.model.FavoriteSentence;
-import com.android.appypapy.persistence.PersistenceManager;
+import com.android.appypapy.ui.event.DeleteFavoriteEventClickListener;
 import com.android.appypapy.ui.event.SpeakEventClickListener;
-import com.android.appypapy.utils.FavoriteSentenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,18 +116,7 @@ public class FavoriteSentencesAdapter extends BaseExpandableListAdapter
 	speak.setOnClickListener(new SpeakEventClickListener(favoriteSentence.getSentence()));
 
 	View delete = convertView.findViewById(R.id.delete);
-	delete.setOnClickListener(new View.OnClickListener()
-	{
-	    @Override
-	    public void onClick(View v)
-	    {
-		PersistenceManager.getManager().delete(favoriteSentence);
-
-		favoriteSentences.remove(favoriteSentence);
-		FavoriteSentenceUtils.organizeByFolder(favoriteSentences, data);
-		notifyDataSetChanged();
-	    }
-	});
+	delete.setOnClickListener(new DeleteFavoriteEventClickListener(this.context, favoriteSentence));
 
 	return convertView;
     }

@@ -46,7 +46,7 @@ public class AppyCheckPopup extends AppyPopup
     protected void bindDialog(final Context context, final AlertDialog alertDialog, LayoutInflater inflater,
 			      LinearLayout popupBaseLayout, TextView title, TextView message, Button button1)
     {
-	final LinearLayout container = (LinearLayout) popupBaseLayout.findViewById(R.id.yoozpopup_container);
+	final LinearLayout container = (LinearLayout) popupBaseLayout.findViewById(R.id.popup_container);
 	container.removeAllViews();
 
 	int id = 0;

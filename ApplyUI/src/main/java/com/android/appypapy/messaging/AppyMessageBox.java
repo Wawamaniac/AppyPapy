@@ -54,7 +54,7 @@ public class AppyMessageBox
 		notifySentenceMessage(new AppySentenceMessage(message));
 		break;
 	    case AppySentenceMessage.APPY_MESSAGE_NEW_FAVORITE_SENTENCE:
-		notifyNewFavoriteMessage(new NewFavoriteSentenceMessage(message));
+		notifyNewFavoriteMessage(new FavoriteSentenceMessage(message));
 		break;
 	}
     }
@@ -67,7 +67,7 @@ public class AppyMessageBox
 	}
     }
 
-    protected void notifyNewFavoriteMessage(NewFavoriteSentenceMessage message)
+    protected void notifyNewFavoriteMessage(FavoriteSentenceMessage message)
     {
 	for (AppyMessageBoxListener listener : this.listeners)
 	{

@@ -2,21 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="match_parent"
 			  android:layout_height="wrap_content"
-			  android:layout_margin="20dp"
-			  android:padding="20dp"
+			  android:layout_margin="@dimen/content_vertical_margin"
+			  android:padding="@dimen/content_vertical_margin"
 			  android:orientation="vertical">
 
 	<TextView
 			android:id="@+id/message"
-			android:textSize="19sp"
-			android:textColor="@color/white_light"
+			android:textSize="@dimen/text_normal"
+			android:textColor="@color/grey_anthracite"
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"/>
 
 	<EditText
-			android:layout_marginTop="10dp"
+			android:layout_marginTop="@dimen/item_line_padding"
 			android:id="@+id/input"
-			android:textSize="20sp"
+			android:background="@drawable/edittext_style"
+			android:textSize="@dimen/text_normal"
+			android:textColor="@color/grey_anthracite"
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"/>
 </LinearLayout>

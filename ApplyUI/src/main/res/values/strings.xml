@@ -1,5 +1,18 @@
 <resources>
 	<string name="app_name">AppyPapy</string>
+
+	<string name="speak">Parler !</string>
+	<string name="remove_text">Supprimer le texte</string>
+
+	<string name="no_favorite">Pas de favoris</string>
+	<string name="add_favorite">Ajouter aux favoris</string>
+	<string name="sure_delete_favorite">Voulez-vous supprimer cette phrase favorite ?</string>
+
 	<string name="record_start">Démarrer</string>
 	<string name="record_stop">Arrêter</string>
+
+	<string name="yes">Oui</string>
+	<string name="no">Non</string>
+
+	<string name="hint_text_to_speech">Texte à énoncer à haute voix</string>
 </resources>

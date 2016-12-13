@@ -3,29 +3,32 @@
 			  android:orientation="horizontal"
 			  android:layout_width="match_parent"
 			  android:layout_height="wrap_content"
-			  android:padding="5dp"
+			  android:padding="@dimen/item_line_padding"
+			  android:background="@color/white_light"
 			  android:gravity="center_vertical">
 
 	<TextView
 			android:id="@+id/sentence"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:textColor="@color/grey_anthracite"
+			android:textSize="@dimen/text_normal"
 			android:layout_weight="1"/>
 
 	<ImageView
 			android:id="@+id/speak"
 			android:layout_width="wrap_content"
-			android:layout_height="35dp"
+			android:layout_height="@dimen/icon_height"
 			android:adjustViewBounds="true"
-			android:layout_marginLeft="10dp"
+			android:layout_marginLeft="@dimen/content_horizontal_margin"
 			android:src="@android:drawable/ic_btn_speak_now"/>
 
 	<ImageView
 			android:id="@+id/delete"
 			android:layout_width="wrap_content"
-			android:layout_height="35dp"
+			android:layout_height="@dimen/icon_height"
 			android:adjustViewBounds="true"
-			android:layout_marginLeft="10dp"
+			android:layout_marginLeft="@dimen/content_horizontal_margin"
 			android:src="@android:drawable/ic_menu_delete"/>
 
 </LinearLayout>

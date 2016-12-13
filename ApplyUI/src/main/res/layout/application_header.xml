@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:background="@color/orange"
+			  android:orientation="horizontal"
+			  android:layout_width="match_parent"
+			  android:gravity="center_vertical"
+			  android:layout_height="@dimen/item_line_height">
+
+	<ImageView android:layout_width="wrap_content"
+			   android:layout_height="@dimen/icon_height"
+			   android:src="@drawable/megaphone"
+			   android:layout_marginLeft="@dimen/content_horizontal_margin"
+			   android:adjustViewBounds="true"/>
+
+	<TextView android:layout_width="0dp"
+			  android:layout_height="match_parent"
+			  android:layout_weight="1"
+			  android:text="@string/app_name"
+			  android:textSize="@dimen/text_very_big"
+			  android:textColor="@color/white"
+			  android:gravity="right|center_vertical"
+			  android:layout_marginRight="@dimen/content_horizontal_margin"/>
+
+</LinearLayout>

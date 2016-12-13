@@ -9,6 +9,6 @@ public interface AppyMessageBoxListener
 
     boolean handleMessage(AppySentenceMessage message);
 
-    boolean handleMessage(NewFavoriteSentenceMessage message);
+    boolean handleMessage(FavoriteSentenceMessage message);
 
 }

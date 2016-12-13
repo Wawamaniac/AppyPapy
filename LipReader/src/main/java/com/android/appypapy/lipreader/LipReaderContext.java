@@ -20,21 +20,23 @@ public class LipReaderContext
     private static final AtomicInteger counter = new AtomicInteger(0);
 
     private static final int TRAIN_EACH = 100;
-    private static Classifier classifier;
+    private static Classifier classifier = null;
 
     public static void init(Context context)
     {
-	try
+	if (classifier == null)
 	{
-	    InputStream modelFileInputStream = context.getResources().openRawResource(R.raw.yesnohello);
-	    //classifier = new MultiLayerPerceptronClassifier(modelFileInputStream);
-	    modelFileInputStream.close();
-	}
-	catch (Exception e)
-	{
+	    try
+	    {
+		InputStream modelFileInputStream = context.getResources().openRawResource(R.raw.yesnohello);
+		classifier = new MultiLayerPerceptronClassifier(modelFileInputStream);
+		modelFileInputStream.close();
+	    }
+	    catch (Exception e)
+	    {
+	    }
 	}
     }
-
 
     public static LipVideoSample normalize(LipVideoSample sample)
     {

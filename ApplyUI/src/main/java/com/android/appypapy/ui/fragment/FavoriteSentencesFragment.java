@@ -11,7 +11,7 @@ import com.android.appypapy.R;
 import com.android.appypapy.messaging.AppyMessageBox;
 import com.android.appypapy.messaging.AppyMessageBoxListener;
 import com.android.appypapy.messaging.AppySentenceMessage;
-import com.android.appypapy.messaging.NewFavoriteSentenceMessage;
+import com.android.appypapy.messaging.FavoriteSentenceMessage;
 import com.android.appypapy.model.FavoriteSentence;
 import com.android.appypapy.persistence.PersistenceManager;
 import com.android.appypapy.ui.adapter.FavoriteSentencesAdapter;
@@ -69,9 +69,29 @@ public class FavoriteSentencesFragment extends Fragment implements AppyMessageBo
     }
 
     @Override
-    public boolean handleMessage(NewFavoriteSentenceMessage message)
+    public boolean handleMessage(FavoriteSentenceMessage message)
     {
 	FavoriteSentence favoriteSentence = message.getFavoriteSentence();
+
+	switch (message.getFavoriteSentenceCrud())
+	{
+	    case NEW:
+		addFavorite(favoriteSentence);
+		return true;
+	    case UPDATED:
+	    case MOVED:
+		updateFavorite(favoriteSentence);
+		return true;
+	    case DELETED:
+		deleteFavorite(favoriteSentence);
+		return true;
+	    default:
+		return false;
+	}
+    }
+
+    protected void addFavorite(FavoriteSentence favoriteSentence)
+    {
 	String folder = favoriteSentence.getFolder();
 
 	this.favoriteSentences.add(favoriteSentence);
@@ -84,7 +104,29 @@ public class FavoriteSentencesFragment extends Fragment implements AppyMessageBo
 	this.favoriteSentencesByFolder.get(folder).add(favoriteSentence);
 
 	this.favoriteSentencesAdapter.notifyDataSetChanged();
+    }
 
-	return true;
+    protected void updateFavorite(FavoriteSentence favoriteSentence)
+    {
+	// TODO
+    }
+
+    protected void deleteFavorite(FavoriteSentence favoriteSentence)
+    {
+	String folder = favoriteSentence.getFolder();
+
+	this.favoriteSentences.remove(favoriteSentence);
+
+	if (this.favoriteSentencesByFolder.get(folder) != null)
+	{
+	    this.favoriteSentencesByFolder.get(folder).remove(favoriteSentence);
+
+	    if (this.favoriteSentencesByFolder.get(folder).isEmpty())
+	    {
+		this.favoriteSentencesByFolder.remove(folder);
+	    }
+	}
+
+	this.favoriteSentencesAdapter.notifyDataSetChanged();
     }
 }

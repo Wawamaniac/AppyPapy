@@ -2,13 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:orientation="vertical"
 			  android:layout_width="match_parent"
-			  android:layout_height="wrap_content"
-			  android:padding="5dp">
+			  android:background="@color/yellow"
+			  android:layout_height="@dimen/item_line_height">
 
 	<TextView
 			android:id="@+id/group_favorite_sentence_header"
-			android:layout_marginLeft="30dp"
+			android:layout_marginLeft="@dimen/content_horizontal_margin"
+			android:layout_marginRight="@dimen/content_horizontal_margin"
+			android:padding="@dimen/text_padding"
+			android:gravity="center"
+			android:textColor="@color/white"
+			android:textSize="@dimen/text_big"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="match_parent"/>
 
 </LinearLayout>

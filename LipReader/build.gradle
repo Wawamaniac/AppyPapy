@@ -24,6 +24,7 @@ android {
             resources.srcDirs = ['src/main/resources']
             res.srcDirs = ['src/main/res']
             jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/jniLibs']
         }
     }
 
@@ -52,8 +53,14 @@ android {
 dependencies {
     repositories {
         mavenCentral()
+
+        flatDir {
+            dirs 'src/main/libs'
+        }
     }
+
     compile fileTree(include: ['*.jar'], dir: 'src/main/libs')
+    compile files('src/main/libs/weka-nogui-3.X.X.jar')
 
     compile 'commons-io:commons-io:2.5'
     compile 'org.apache.commons:commons-lang3:3.5'

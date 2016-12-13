@@ -13,27 +13,42 @@
 	<EditText
 			android:id="@+id/input"
 			android:layout_width="match_parent"
-			android:layout_height="50dp"
-			android:text=""/>
+			android:layout_height="wrap_content"
+			android:minHeight="@dimen/input_height"
+			android:background="@drawable/edittext_style_border"
+			android:textSize="@dimen/text_normal"
+			android:textColor="@color/grey_anthracite"
+			android:paddingLeft="@dimen/text_padding"
+			android:paddingRight="@dimen/text_padding"
+			android:hint="@string/hint_text_to_speech"/>
 
 	<Button
 			android:id="@+id/button"
-			android:layout_marginTop="@dimen/activity_vertical_margin"
+			android:layout_marginTop="@dimen/content_vertical_margin"
 			android:layout_width="match_parent"
-			android:layout_height="50dp"
-			android:text="Parler !"/>
+			android:layout_height="@dimen/button_height"
+			android:background="@drawable/button_style"
+			android:text="@string/speak"
+			android:textColor="@color/white"
+			android:textSize="@dimen/text_big"/>
 
 	<Button
 			android:id="@+id/clear"
-			android:layout_marginTop="@dimen/activity_vertical_margin"
+			android:layout_marginTop="@dimen/content_vertical_margin"
 			android:layout_width="match_parent"
-			android:layout_height="50dp"
-			android:text="Supprimer le texte"/>
+			android:layout_height="@dimen/button_height"
+			android:background="@drawable/button_style"
+			android:text="@string/remove_text"
+			android:textColor="@color/white"
+			android:textSize="@dimen/text_big"/>
 
 	<Button
 			android:id="@+id/favorite"
-			android:layout_marginTop="@dimen/activity_vertical_margin"
+			android:layout_marginTop="@dimen/content_vertical_margin"
 			android:layout_width="match_parent"
-			android:layout_height="50dp"
-			android:text="Ajouter aux favoris"/>
+			android:layout_height="@dimen/button_height"
+			android:background="@drawable/button_style"
+			android:text="@string/add_favorite"
+			android:textColor="@color/white"
+			android:textSize="@dimen/text_big"/>
 </LinearLayout>

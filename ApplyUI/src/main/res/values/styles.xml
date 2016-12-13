@@ -1,11 +1,16 @@
 <resources>
 
 	<style name="AppTheme"
-		   parent="Theme.AppCompat.Light"/>
+		   parent="android:Theme.Holo.Light">
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+	</style>
+	<!-- Theme.AppCompat.Light -->
 	<!--parent="android:Theme.Light.NoTitleBar"/>-->
 
+	<!-- Theme.AppCompat.Light.Dialog -->
 	<style name="full_screen_dialog"
-		   parent="Theme.AppCompat.Light.Dialog">
+		   parent="android:Theme.Holo.Light.Dialog">
 		<item name="android:windowNoTitle">true</item>
 		<item name="android:windowFullscreen">true</item>
 		<item name="android:windowIsFloating">true</item>

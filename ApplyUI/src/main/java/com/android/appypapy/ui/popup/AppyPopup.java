@@ -76,9 +76,9 @@ public abstract class AppyPopup
 	dialog.getWindow().setLayout(screenWidth, ViewGroup.LayoutParams.MATCH_PARENT);
 	dialog.getWindow().setBackgroundDrawableResource(R.drawable.trasparent_background);
 
-	TextView title = (TextView) popupBaseLayout.findViewById(R.id.yoozpopup_title);
+	TextView title = (TextView) popupBaseLayout.findViewById(R.id.popup_title);
 	title.setText(this.title);
-	TextView message = (TextView) popupBaseLayout.findViewById(R.id.yoozpopup_message);
+	TextView message = (TextView) popupBaseLayout.findViewById(R.id.popup_message);
 
 	if (StringUtils.isBlank(this.message))
 	{
@@ -89,7 +89,7 @@ public abstract class AppyPopup
 	    message.setText(this.message);
 	}
 
-	Button button1 = (Button) popupBaseLayout.findViewById(R.id.yoozpopup_button1);
+	Button button1 = (Button) popupBaseLayout.findViewById(R.id.popup_button1);
 	button1.setText(this.button1Text);
 
 	dialog.setCancelable(this.cancelable);

@@ -11,18 +11,21 @@
 		android:paddingTop="@dimen/activity_vertical_margin"
 		android:paddingBottom="@dimen/activity_vertical_margin">
 
+	<include layout="@layout/application_header"/>
+
 	<Button
 			android:id="@+id/record_button"
 			android:text="@string/record_start"
+			android:layout_marginTop="@dimen/content_vertical_margin"
 			style="@android:style/ButtonBar"
 			android:layout_width="match_parent"
-			android:layout_height="50dp"/>
+			android:layout_height="@dimen/button_height"/>
 
 	<org.opencv.android.JavaCameraView
-			android:layout_marginTop="@dimen/activity_vertical_margin"
+			android:layout_marginTop="@dimen/content_vertical_margin"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:visibility="gone"
+			android:visibility="invisible"
 			android:id="@+id/camera_bridge_view_base"
 			opencv:show_fps="true"
 			opencv:camera_id="front"/>

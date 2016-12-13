@@ -5,6 +5,7 @@
 	<color name="grey_very_light">#dcdcdc</color>
 	<color name="grey_very_light2">#cccccc</color>
 	<color name="transluscent_grey">#96aeaeae</color>
+	<color name="grey_anthracite">#303030</color>
 	<color name="grey_light">#cbcbcb</color>
 	<color name="grey">#bababa</color>
 	<color name="grey2">#767676</color>
@@ -18,6 +19,8 @@
 	<color name="red">#a20d09</color>
 	<color name="red2">#dd1010</color>
 	<color name="red_light">#FF0000</color>
+	<color name="orange">#FD5419</color>
+	<color name="yellow">#FDC619</color>
 	<color name="grey_dark3">#323232</color>
 	<color name="grey_dark2">#444444</color>
 	<color name="grey_dark">#222222</color>

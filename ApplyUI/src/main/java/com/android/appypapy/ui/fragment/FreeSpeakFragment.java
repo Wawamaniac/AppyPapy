@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import com.android.appypapy.R;
 import com.android.appypapy.messaging.AppyMessageBox;
-import com.android.appypapy.messaging.NewFavoriteSentenceMessage;
+import com.android.appypapy.messaging.FavoriteSentenceMessage;
 import com.android.appypapy.model.FavoriteSentence;
 import com.android.appypapy.persistence.PersistenceManager;
 import com.android.appypapy.ui.event.InputSpeakEventListener;
@@ -85,7 +85,8 @@ public class FreeSpeakFragment extends Fragment
 	FavoriteSentence favoriteSentence = new FavoriteSentence(folder, sentence);
 	PersistenceManager.getManager().upsert(favoriteSentence);
 
-	NewFavoriteSentenceMessage message = new NewFavoriteSentenceMessage(favoriteSentence);
+	FavoriteSentenceMessage message =
+		new FavoriteSentenceMessage(favoriteSentence, FavoriteSentenceMessage.FavoriteSentenceCrud.NEW);
 
 	AppyMessageBox.getInstance().post(message);
 
